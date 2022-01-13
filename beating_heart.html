@@ -3,10 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
+    <!-- <meta
       name="viewport"
       content="width=
     , initial-scale=1.0"
+    /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap"
+      rel="stylesheet"
     />
     <title>Beating Heart</title>
     <style>
@@ -119,6 +125,8 @@
         position: relative;
         width: 500px;
         height: 450px;
+        /* width: 500px;
+        height: 450px; */
         /* margin: 0 auto; */
       }
       .heart {
@@ -179,10 +187,12 @@
         position: absolute;
         margin: 125px 200px;
         z-index: 9;
-        font-size: 50px;
+        /* font-size: 50px; */
         text-align: center;
         color: #fff;
-        line-height: 40px;
+        /* line-height: 80px; */
+        font-size: 5rem;
+        font-family: "Tangerine", cursive;
         -webkit-animation: justBeat 0.7s ease 0s infinite normal;
         -moz-animation: justBeat 0.7s ease 0s infinite normal;
         animation: justBeat 0.7s ease 0s infinite normal;
@@ -208,8 +218,7 @@
       secondDate.setHours(0, 0, 0, 0);
 
       const diffDays = Math.round(Math.abs((secondDate - firstDate) / oneDay));
-      document.getElementsByClassName("text")[0].innerHTML =
-        "<br />" + diffDays + " days";
+      document.getElementsByClassName("text")[0].innerHTML = diffDays + " days";
     </script>
   </body>
 </html>
