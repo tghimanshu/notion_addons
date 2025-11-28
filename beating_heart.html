@@ -16,6 +16,15 @@
     />
     <title>Beating Heart</title>
     <style>
+      /*
+       * Animation: beat
+       * Purpose: Creates a pulsing effect with rotation and shadow changes to simulate a heartbeat.
+       *
+       * Keyframes:
+       * - 0%: Normal scale, rotated 225deg.
+       * - 50%: Scaled up (1.1), rotated 225deg, larger shadow.
+       * - 100%: Return to start.
+       */
       @-webkit-keyframes beat {
         0% {
           -webkit-transform: scale(1) rotate(225deg);
@@ -59,6 +68,15 @@
         }
       }
 
+      /*
+       * Animation: justBeat
+       * Purpose: Creates a pulsing effect without rotation, used for the text overlay.
+       *
+       * Keyframes:
+       * - 0%: Normal scale.
+       * - 50%: Scaled up (1.1), larger shadow.
+       * - 100%: Return to start.
+       */
       @-webkit-keyframes justBeat {
         0% {
           -webkit-transform: scale(1);
@@ -102,6 +120,10 @@
         }
       }
 
+      /*
+       * ID: #background
+       * Purpose: Sets a fixed full-screen gradient background.
+       */
       #background {
         position: fixed;
         top: 0;
@@ -121,6 +143,11 @@
         background: -webkit-linear-gradient(top, #ffa5a5 0%, #ffd3d3 100%);
         background: linear-gradient(top, #ffa5a5 0%, #ffd3d3 100%);
       }
+
+      /*
+       * ID: #chest
+       * Purpose: Container for the heart elements, centered on the page.
+       */
       #chest {
         position: relative;
         width: 500px;
@@ -129,6 +156,11 @@
         height: 450px; */
         margin: 0 auto;
       }
+
+      /*
+       * Class: .heart
+       * Purpose: Defines the basic shape and animation for heart components.
+       */
       .heart {
         position: absolute;
         z-index: 2;
@@ -146,6 +178,11 @@
         -moz-animation: beat 0.7s ease 0s infinite normal;
         animation: beat 0.7s ease 0s infinite normal;
       }
+
+      /*
+       * Class: .heart.center
+       * Purpose: Styles the central part of the heart.
+       */
       .heart.center {
         background: -moz-linear-gradient(-45deg, #b80734 0%, #d5093c 40%);
         background: -webkit-gradient(
@@ -158,9 +195,19 @@
         background: -webkit-linear-gradient(-45deg, #b80734 0%, #d5093c 40%);
         background: linear-gradient(-45deg, #b80734 0%, #d5093c 40%);
       }
+
+      /*
+       * Class: .heart.top
+       * Purpose: Ensures the top parts of the heart are layered correctly.
+       */
       .heart.top {
         z-index: 3;
       }
+
+      /*
+       * Class: .side
+       * Purpose: Creates the rounded sides of the heart using border-radius.
+       */
       .side {
         top: 50px;
         width: 220px;
@@ -169,6 +216,11 @@
         -webkit-border-radius: 220px;
         border-radius: 220px;
       }
+
+      /*
+       * Class: .center
+       * Purpose: Styles the square center part of the heart that connects the sides.
+       */
       .center {
         width: 210px;
         height: 210px;
@@ -177,12 +229,27 @@
         font-size: 0;
         text-indent: -9999px;
       }
+
+      /*
+       * Class: .left
+       * Purpose: Positions the left lobe of the heart.
+       */
       .left {
         left: 62px;
       }
+
+      /*
+       * Class: .right
+       * Purpose: Positions the right lobe of the heart.
+       */
       .right {
         right: 62px;
       }
+
+      /*
+       * Class: .text
+       * Purpose: Styles and animates the text overlay (day counter).
+       */
       .text {
         position: absolute;
         margin: 125px 200px;
@@ -212,12 +279,35 @@
       <div class="heart right side"></div>
     </div>
     <script>
-      const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+      /**
+       * The number of milliseconds in one day.
+       * Calculated as: 24 hours * 60 minutes * 60 seconds * 1000 milliseconds.
+       * @type {number}
+       */
+      const oneDay = 24 * 60 * 60 * 1000;
+
+      /**
+       * The start date for the counter.
+       * Set to December 27, 2021.
+       * @type {Date}
+       */
       const firstDate = new Date(2021, 11, 27);
+
+      /**
+       * The current date used for comparison.
+       * initialized to the current moment, then reset to midnight (00:00:00) to ignore time of day.
+       * @type {Date}
+       */
       const secondDate = new Date();
       secondDate.setHours(0, 0, 0, 0);
 
+      /**
+       * The absolute difference in days between the current date and the start date.
+       * @type {number}
+       */
       const diffDays = Math.round(Math.abs((secondDate - firstDate) / oneDay));
+
+      // Update the DOM element with class "text" to display the calculated day difference.
       document.getElementsByClassName("text")[0].innerHTML = diffDays + " days";
     </script>
   </body>
